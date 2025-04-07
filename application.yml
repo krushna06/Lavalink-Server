@@ -31,7 +31,7 @@ lavalink:
                 enabled: true
                 endpoint: /metrics
         opusEncodingQuality: 10
-        password: YOUR_CREDENTIAL
+        password: youshallnotpass
         playerUpdateInterval: 10
         resamplingQuality: HIGH
         soundcloudSearchEnabled: true
@@ -49,7 +49,6 @@ lavalink:
         useSeekGhosting: true
         youtubePlaylistLoadLimit: 6
         youtubeSearchEnabled: true
-
 logging:
     file:
         path: ./logs/
@@ -67,12 +66,10 @@ logging:
         includePayload: true
         includeQueryString: true
         maxPayloadLength: 10000
-
 metrics:
     prometheus:
         enabled: true
         endpoint: /metrics
-
 plugins:
     dunctebot:
         sources:
@@ -92,13 +89,13 @@ plugins:
         applemusic:
             albumLoadLimit: 6
             countryCode: US
-            keyID: YOUR_CREDENTIAL
-            mediaAPIToken: YOUR_CREDENTIAL
-            musicKitKey: "-----BEGIN PRIVATE KEY-----\nYOUR_CREDENTIAL\n-----END PRIVATE KEY-----\n"
+            keyID: your key id
+            mediaAPIToken: ""
+            musicKitKey: "-----BEGIN PRIVATE KEY-----\nyour key\n-----END PRIVATE KEY-----      \n"
             playlistLoadLimit: 6
-            teamID: YOUR_CREDENTIAL
+            teamID: your team id
         deezer:
-            masterDecryptionKey: YOUR_CREDENTIAL
+            masterDecryptionKey: your master decryption key
         flowerytts:
             audioFormat: mp3
             silence: 0
@@ -122,14 +119,14 @@ plugins:
             youtube: true
         spotify:
             albumLoadLimit: 6
-            clientId: YOUR_CREDENTIAL
-            clientSecret: YOUR_CREDENTIAL
+            clientId: ID
+            clientSecret: SECRET
             countryCode: US
             localFiles: false
             playlistLoadLimit: 6
-            spDc: YOUR_CREDENTIAL
+            spDc: your sp dc cookie
         yandexmusic:
-            accessToken: YOUR_CREDENTIAL
+            accessToken: accesstoken
             albumLoadLimit: 1
             artistLoadLimit: 1
             playlistLoadLimit: 1
@@ -145,11 +142,11 @@ plugins:
         enabled: true
         oauth:
           enabled: true
-
 sentry:
     dsn: ""
     environment: ""
-
 server:
     address: 0.0.0.0
-    http
+    http2:
+        enabled: false
+    port: 2333
