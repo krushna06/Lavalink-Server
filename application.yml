@@ -1,46 +1,65 @@
 lavalink:
     plugins:
+        - dependency: com.github.appujet:jiosaavn-plugin:0.1.7
+          repository: https://jitpack.io
+        - dependency: com.dunctebot:skybot-lavalink-plugin:1.7.0
+          snapshot: false
         - dependency: com.github.topi314.lavasearch:lavasearch-plugin:1.0.0
-          repository: https://maven.topi.wtf/releases
-        - dependency: com.github.topi314.lavasrc:lavasrc-plugin:4.0.1
-          repository: https://maven.topi.wtf/releases
-        - dependency: "com.github.topi314.sponsorblock:sponsorblock-plugin:3.0.0"
-          repository: "https://maven.lavalink.dev/releases"
-        - dependency: "com.dunctebot:skybot-lavalink-plugin:1.6.3"
-          repository: "https://maven.lavalink.dev/releases"
+          snapshot: false
+        - dependency: com.github.topi314.lavasrc:lavasrc-plugin:4.5.0
+          snapshot: false
+        - dependency: dev.lavalink.youtube:youtube-plugin:3e4fb4dd88fcd7f18f71807cdfd38a6cf27fe023
+          snapshot: true
+    pluginsDir: ./plugins
     server:
-        bufferDurationMs: 400
+        bufferDurationMs: 10000
+        filters:
+            channelMix: true
+            distortion: true
+            equalizer: true
+            karaoke: true
+            lowPass: true
+            rotation: true
+            timescale: true
+            tremolo: true
+            vibrato: true
+            volume: true
         frameBufferDurationMs: 5000
         gc-warnings: true
-        opusEncodingQuality: 0
-        password: youshallnotpass #Default password
-        playerUpdateInterval: 5
-        resamplingQuality: LOW
+        metrics:
+            prometheus:
+                enabled: true
+                endpoint: /metrics
+        opusEncodingQuality: 10
+        password: YOUR_CREDENTIAL
+        playerUpdateInterval: 10
+        resamplingQuality: HIGH
         soundcloudSearchEnabled: true
         sources:
             bandcamp: true
             http: true
-            local: true
+            local: false
             mixer: true
+            nico: true
             soundcloud: true
             twitch: true
             vimeo: true
-            youtube: true
-        trackStuckThresholdMs: 10000
+            youtube: false
+        trackStuckThresholdMs: 60000
         useSeekGhosting: true
-        youtubeConfig:
-            email: # Email id
-            password: # Email password.
         youtubePlaylistLoadLimit: 6
         youtubeSearchEnabled: true
+
 logging:
     file:
-        max-history: 30
-        max-size: 1GB
+        path: ./logs/
     level:
         lavalink: INFO
         root: INFO
-    path: ./logs/
+    logback:
+        rollingpolicy:
+            max-file-size: 1GB
+            max-history: 30
     request:
         enabled: true
         includeClientInfo: true
@@ -48,59 +67,89 @@ logging:
         includePayload: true
         includeQueryString: true
         maxPayloadLength: 10000
+
 metrics:
     prometheus:
-        enabled: false
+        enabled: true
         endpoint: /metrics
+
 plugins:
     dunctebot:
-        ttsLanguage: en-AU
         sources:
-      # true = source enabled, false = source disabled
-          getyarn: true # www.getyarn.io
-          clypit: true # www.clyp.it
-          tts: true # speak:Words to speak
-          pornhub: true # should be self-explanatory
-          reddit: true # should be self-explanatory
-          ocremix: true # www.ocremix.org
-          tiktok: true # tiktok.com
-          mixcloud: true # mixcloud.com
-          soundgasm: true # soundgasm.net
+            clypit: true
+            getyarn: true
+            mixcloud: true
+            ocremix: true
+            pornhub: true
+            reddit: true
+            soundgasm: true
+            tiktok: true
+            tts: true
+        ttsLanguage: en-US
+    jiosaavn:
+        apiURL: https://saavn.dev/api
     lavasrc:
+        applemusic:
+            albumLoadLimit: 6
+            countryCode: US
+            keyID: YOUR_CREDENTIAL
+            mediaAPIToken: YOUR_CREDENTIAL
+            musicKitKey: "-----BEGIN PRIVATE KEY-----\nYOUR_CREDENTIAL\n-----END PRIVATE KEY-----\n"
+            playlistLoadLimit: 6
+            teamID: YOUR_CREDENTIAL
         deezer:
-            masterDecryptionKey: # Key here
+            masterDecryptionKey: YOUR_CREDENTIAL
         flowerytts:
             audioFormat: mp3
             silence: 0
             speed: 1
             translate: false
             voice: default voice
+        lyrics-sources:
+            deezer: false
+            spotify: true
+            yandexmusic: false
+            youtube: true
         providers:
             - ytsearch:"%ISRC%"
-            - ytmsearch:%QUERY%
             - ytsearch:%QUERY%
-            - scsearch:%QUERY%
-            - dzisrc:%ISRC%
-            - dzsearch:%QUERY%
         sources:
-            applemusic: false
-            deezer: true
-            flowerytts: true
+            applemusic: true
+            deezer: false
+            flowerytts: false
             spotify: true
             yandexmusic: true
             youtube: true
         spotify:
-            albumLoadLimit: 50
-            clientId: #Client ID here.
-            clientSecret: #Client Secret here.
-            countryCode: ID
-            playlistLoadLimit: 100
+            albumLoadLimit: 6
+            clientId: YOUR_CREDENTIAL
+            clientSecret: YOUR_CREDENTIAL
+            countryCode: US
+            localFiles: false
+            playlistLoadLimit: 6
+            spDc: YOUR_CREDENTIAL
         yandexmusic:
-            accessToken: #Accesstoken here.
+            accessToken: YOUR_CREDENTIAL
+            albumLoadLimit: 1
+            artistLoadLimit: 1
+            playlistLoadLimit: 1
+        youtube:
+            countryCode: US
+    youtube:
+        allowDirectPlaylistIds: true
+        allowDirectVideoIds: true
+        allowSearch: true
+        clients:
+            - WEB
+            - TVHTML5EMBEDDED
+        enabled: true
+        oauth:
+          enabled: true
+
 sentry:
     dsn: ""
     environment: ""
+
 server:
     address: 0.0.0.0
-    port: 25569
-
+    http
