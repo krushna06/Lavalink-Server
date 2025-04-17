@@ -12,7 +12,7 @@ lavalink:
           snapshot: true
     pluginsDir: ./plugins
     server:
-        bufferDurationMs: 10000
+        bufferDurationMs: 5000
         filters:
             channelMix: true
             distortion: true
@@ -24,7 +24,7 @@ lavalink:
             tremolo: true
             vibrato: true
             volume: true
-        frameBufferDurationMs: 5000
+        frameBufferDurationMs: 10000
         gc-warnings: true
         metrics:
             prometheus:
@@ -46,7 +46,7 @@ lavalink:
             vimeo: true
             youtube: false
         trackStuckThresholdMs: 60000
-        useSeekGhosting: true
+        useSeekGhosting: false
         youtubePlaylistLoadLimit: 6
         youtubeSearchEnabled: true
 logging:
