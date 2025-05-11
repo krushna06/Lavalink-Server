@@ -142,6 +142,7 @@ plugins:
         enabled: true
         oauth:
           enabled: true
+          refreshToken: # your string here
 sentry:
     dsn: ""
     environment: ""
