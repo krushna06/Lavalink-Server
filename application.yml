@@ -108,8 +108,13 @@ plugins:
             yandexmusic: false
             youtube: true
         providers:
-            - ytsearch:"%ISRC%"
-            - ytsearch:%QUERY%
+            - 'ytsearch:"%ISRC%"'
+            - "ytsearch:%QUERY%" 
+            - "scsearch:%QUERY%" 
+            # - "ymsearch:%QUERY%" 
+            # - "dzisrc:%ISRC%"
+            # - "dzsearch:%QUERY%" 
+            # - "ymsearch:%QUERY%" 
         sources:
             applemusic: true
             deezer: false
